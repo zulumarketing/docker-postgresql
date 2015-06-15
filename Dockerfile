@@ -15,6 +15,7 @@ RUN apt-get update > /dev/null \
     && apt-get install -y supervisor postgresql > /dev/null \
     && apt-get clean > /dev/null
 
+COPY postgresql.conf /etc/postgresql/9.3/main/postgresql.conf
 COPY pg_hba.conf /etc/postgresql/9.3/main/pg_hba.conf
 COPY supervisor.conf /etc/supervisor/supervisor.conf
 
@@ -22,5 +23,4 @@ VOLUME ["/var/lib/postgresql"]
 
 USER root
 EXPOSE 5432
-ENTRYPOINT ["/usr/bin/supervisord"]
-CMD ["-c", "/etc/supervisor/supervisor.conf"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisor.conf"]
