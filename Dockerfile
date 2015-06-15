@@ -15,8 +15,6 @@ RUN apt-get update > /dev/null \
     && apt-get install -y supervisor postgresql > /dev/null \
     && apt-get clean > /dev/null
 
-RUN mkdir -p /root/bin
-COPY run.sh /root/bin/run.sh
 COPY pg_hba.conf /etc/postgresql/9.3/main/pg_hba.conf
 COPY supervisor.conf /etc/supervisor/supervisor.conf
 
