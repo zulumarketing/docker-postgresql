@@ -21,5 +21,5 @@ COPY pg_hba.conf /etc/postgresql/9.3/main/pg_hba.conf
 USER postgres
 EXPOSE 5432
 CMD ["/usr/lib/postgresql/9.3/bin/postgres", \
-     "-D", "/var/lib/postgresql/9.3/main", \
-     "--config-file", "/etc/postgresql/9.3/main/postgresql.conf"]
+     "-D /var/lib/postgresql/9.3/main", \
+     "--config-file=/etc/postgresql/9.3/main/postgresql.conf"]
