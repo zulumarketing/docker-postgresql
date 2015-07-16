@@ -10,6 +10,8 @@ ENV LANGUAGE en_US.UTF-8
 
 VOLUME ["/var/lib/postgresql"]
 
+COPY ./postgresql-wrapper.sh /usr/bin/postgresql-wrapper
+
 RUN apt-get update > /dev/null \
     && apt-get upgrade -y > /dev/null \
     && apt-get install -y postgresql > /dev/null \
@@ -20,6 +22,6 @@ COPY pg_hba.conf /etc/postgresql/9.3/main/pg_hba.conf
 
 USER postgres
 EXPOSE 5432
-CMD ["/usr/lib/postgresql/9.3/bin/postgres", \
+CMD ["/usr/bin/postgresql-wrapper", \
      "-D /var/lib/postgresql/9.3/main", \
      "--config-file=/etc/postgresql/9.3/main/postgresql.conf"]
